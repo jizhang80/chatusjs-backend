@@ -4,8 +4,14 @@ const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const logger = require("./middleware/logger");
 const notFound = require("./middleware/notFound"); //add 404 hanlder
+const cors = require("cors"); // add for frontend call the backend in the same host
 
 const app = express();
+app.use(
+  cors({
+    origin: "http://localhost:3000", // or use a wildcard '*' for development (not recommended for production)
+  }),
+);
 
 app.use(express.json());
 app.use(logger); // Custom middleware
